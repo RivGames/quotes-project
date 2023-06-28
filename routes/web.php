@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/',[QuoteController::class,'index'])->name('quotes.index');
+Route::get('/random',[QuoteController::class,'random'])->name('quotes.random');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login',function (){
+    return view('login');
 });
+Route::post('/login', LoginController::class);
+
+Route::get('/register',function (){
+    return view('register');
+});
+Route::post('/register', RegisterController::class);
